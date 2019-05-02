@@ -27,35 +27,35 @@ public class DestroyServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String _token = (String)request.getParameter("_token");
-		if(_token != null && _token.equals(request.getSession().getId())) {
-		    EntityManager em = DBUtil.createEntityManager();
-		    
-		    //セッションスコープからタスクのIDを取得して
-		    //該当のIDをタスク一件のみデータベースから取得
-		    Task t = em.find(Task.class , (Integer)(request.getSession().getAttribute("task_id")));
-		    
-		    em.getTransaction().begin();
-		    em.remove(t);
-		    em.getTransaction().commit();
-		    em.close();
-		    
-		    //セッションスコープ上の不要になったデータを削除
-		    request.getSession().removeAttribute("task_id");
-		    
-		    //indexページへリダイレクト
-		    response.sendRedirect(request.getContextPath() + "/index");
-		}
-	}
+	    String _token = (String)request.getParameter("_token");
+        if(_token != null && _token.equals(request.getSession().getId())) {
+            EntityManager em = DBUtil.createEntityManager();
+
+            // セッションスコープからタスクのIDを取得して
+            // 該当のIDのタスク1件のみをデータベースから取得
+            Task t = em.find(Task.class, (Integer)(request.getSession().getAttribute("task_id")));
+
+            em.getTransaction().begin();
+            em.remove(t);
+            em.getTransaction().commit();
+            em.close();
+
+            // セッションスコープ上の不要になったデータを削除
+            request.getSession().removeAttribute("task_id");
+
+            // indexページへリダイレクト
+            response.sendRedirect(request.getContextPath() + "/index");
+        }
+    }
+	
+	
+	
 
 }
