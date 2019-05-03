@@ -4,7 +4,15 @@ body {
     color: #333333;
     font-family: "Hiragino Kaku Gothic Pro",Meiryo,"MS PGothic",Helvetica,Arial,sans-serif;
 }
-
+#flush_error {
+	width: 100%;
+	padding-top:28px;
+	padding-bottom:28px;
+	padding-left:2%;
+	margin-bottom: 15px;
+	color: #721c24;
+	background-color: #f8d7da;
+}
 #header {
     width: 100%;
     height: 70px;
@@ -81,3 +89,4 @@ button {
     color: #155724;
     background-color: #d4edda;
 }
+
